@@ -15,7 +15,7 @@ public class Autor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_autor", nullable = false)
-    private Long id;
+    private Long idAutor;
 
     @Column(name = "nome", length = 45, nullable = false)
     private String nome;
@@ -23,12 +23,12 @@ public class Autor implements Serializable {
     @Column(name = "sobrenome", length = 45, nullable = false)
     private String sobrenome;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idAutor) {
+        this.idAutor = idAutor;
     }
 
     public Long getId() {
-        return id;
+        return idAutor;
     }
 
     public String getNome() {
@@ -52,18 +52,18 @@ public class Autor implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Autor autor = (Autor) o;
-        return Objects.equals(id, autor.id);
+        return Objects.equals(idAutor, autor.idAutor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(idAutor);
     }
 
     @Override
     public String toString() {
         return "Autor{" +
-                "id=" + id +
+                "id=" + idAutor +
                 '}';
     }
 }
