@@ -5,6 +5,8 @@ import com.jnsdev.demospringdevjpa.entity.Autor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @Autor Jairo Nascimento
  * @Created 23/09/2024 - 09:54
@@ -37,5 +39,10 @@ public class AutorController {
     @GetMapping("{idAutor}")
     public Autor getById(@PathVariable Long idAutor) {
         return dao.findById(idAutor);
+    }
+
+    @GetMapping()
+    public List<Autor> getAll() {
+        return dao.findAll();
     }
 }

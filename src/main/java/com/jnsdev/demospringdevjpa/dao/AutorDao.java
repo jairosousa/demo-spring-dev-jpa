@@ -6,6 +6,8 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @Autor Jairo Nascimento
  * @Created 23/09/2024 - 09:50
@@ -33,5 +35,11 @@ public class AutorDao {
     @Transactional(readOnly = true)
     public Autor findById(Long idAutor) {
         return this.manager.find(Autor.class, idAutor);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Autor> findAll() {
+        var query = "SELECT a FROM Autor a";
+        return this.manager.createQuery(query, Autor.class).getResultList();
     }
 }
