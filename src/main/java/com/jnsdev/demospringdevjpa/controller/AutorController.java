@@ -14,23 +14,28 @@ import org.springframework.web.bind.annotation.*;
 public class AutorController {
 
     @Autowired
-    private AutorDao autorDao;
+    private AutorDao dao;
 
     @PostMapping
     public Autor salvar(@RequestBody Autor autor) {
-        autorDao.save(autor);
+        dao.save(autor);
         return autor;
     }
 
     @PutMapping
     public Autor update(@RequestBody Autor autor) {
-        autorDao.update(autor);
+        dao.update(autor);
         return autor;
     }
 
     @DeleteMapping("{idAutor}")
     public String delete(@PathVariable Long idAutor) {
-        autorDao.delete(idAutor);
+        dao.delete(idAutor);
         return String.format("Autor id: %s foi excluído com sucesso", idAutor);
+    }
+
+    @GetMapping("{idAutor}")
+    public Autor getById(@PathVariable Long idAutor) {
+        return dao.findById(idAutor);
     }
 }

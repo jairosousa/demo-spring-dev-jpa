@@ -29,4 +29,9 @@ public class AutorDao {
     public void delete(Long idAutor) {
         this.manager.remove(this.manager.getReference(Autor.class, idAutor));
     }
+
+    @Transactional(readOnly = true)
+    public Autor findById(Long idAutor) {
+        return this.manager.find(Autor.class, idAutor);
+    }
 }
