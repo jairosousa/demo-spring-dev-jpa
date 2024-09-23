@@ -24,4 +24,9 @@ public class AutorDao {
     public void update(Autor autor) {
         this.manager.merge(autor);
     }
+
+    @Transactional(readOnly = false)
+    public void delete(Long idAutor) {
+        this.manager.remove(this.manager.getReference(Autor.class, idAutor));
+    }
 }

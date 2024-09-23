@@ -4,7 +4,6 @@ import com.jnsdev.demospringdevjpa.dao.AutorDao;
 import com.jnsdev.demospringdevjpa.entity.Autor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.service.annotation.PutExchange;
 
 /**
  * @Autor Jairo Nascimento
@@ -27,5 +26,11 @@ public class AutorController {
     public Autor update(@RequestBody Autor autor) {
         autorDao.update(autor);
         return autor;
+    }
+
+    @DeleteMapping("{idAutor}")
+    public String delete(@PathVariable Long idAutor) {
+        autorDao.delete(idAutor);
+        return String.format("Autor id: %s foi excluído com sucesso", idAutor);
     }
 }
