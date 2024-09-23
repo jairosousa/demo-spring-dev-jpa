@@ -23,12 +23,12 @@ public class Autor implements Serializable {
     @Column(name = "sobrenome", length = 45, nullable = false)
     private String sobrenome;
 
-    public void setId(Long idAutor) {
-        this.idAutor = idAutor;
+    public Long getIdAutor() {
+        return idAutor;
     }
 
-    public Long getId() {
-        return idAutor;
+    public void setIdAutor(Long idAutor) {
+        this.idAutor = idAutor;
     }
 
     public String getNome() {

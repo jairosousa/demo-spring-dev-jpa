@@ -20,4 +20,8 @@ public class AutorDao {
     public void save(Autor autor) {
         this.manager.persist(autor);
     }
+    @Transactional(readOnly = false)
+    public void update(Autor autor) {
+        this.manager.merge(autor);
+    }
 }
