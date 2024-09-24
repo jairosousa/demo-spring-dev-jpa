@@ -42,7 +42,12 @@ public class AutorController {
     }
 
     @GetMapping()
-    public List<Autor> getAll() {
+    public List<Autor> findAll() {
         return dao.findAll();
+    }
+
+    @GetMapping("nomeOrSobrenome")
+    public List<Autor> findAllByNameOrSobrenome(@RequestParam String termo) {
+        return dao.findAllByNameOrSobrenome(termo);
     }
 }

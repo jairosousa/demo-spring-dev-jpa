@@ -22,6 +22,7 @@ public class AutorDao {
     public void save(Autor autor) {
         this.manager.persist(autor);
     }
+
     @Transactional(readOnly = false)
     public void update(Autor autor) {
         this.manager.merge(autor);
@@ -41,5 +42,13 @@ public class AutorDao {
     public List<Autor> findAll() {
         var query = "SELECT a FROM Autor a";
         return this.manager.createQuery(query, Autor.class).getResultList();
+    }
+
+    public List<Autor> findAllByNameOrSobrenome(String termo) {
+        var query = "SELECT a FROM Autor a " +
+                "WHERE a.nome like :termo OR a.sobrenome like :termo";
+        return this.manager.createQuery(query, Autor.class)
+                .setParameter("termo", "%" + termo + "%")
+                .getResultList();
     }
 }
