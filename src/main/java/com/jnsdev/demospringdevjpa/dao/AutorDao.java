@@ -44,11 +44,18 @@ public class AutorDao {
         return this.manager.createQuery(query, Autor.class).getResultList();
     }
 
+    @Transactional(readOnly = true)
     public List<Autor> findAllByNameOrSobrenome(String termo) {
         var query = "SELECT a FROM Autor a " +
                 "WHERE a.nome like :termo OR a.sobrenome like :termo";
         return this.manager.createQuery(query, Autor.class)
                 .setParameter("termo", "%" + termo + "%")
                 .getResultList();
+    }
+
+    @Transactional(readOnly = true)
+    public Long getTotalElement() {
+        var query = "SELECT count(1) FROM Autor a";
+        return this.manager.createQuery(query, Long.class).getSingleResult();
     }
 }

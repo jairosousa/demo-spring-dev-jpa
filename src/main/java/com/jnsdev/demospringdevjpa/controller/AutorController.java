@@ -50,4 +50,9 @@ public class AutorController {
     public List<Autor> findAllByNameOrSobrenome(@RequestParam String termo) {
         return dao.findAllByNameOrSobrenome(termo);
     }
+
+    @GetMapping("total")
+    public Long getTotalAutores() {
+        return dao.getTotalElement();
+    }
 }
