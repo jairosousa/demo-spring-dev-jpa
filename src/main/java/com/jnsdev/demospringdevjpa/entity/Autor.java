@@ -12,10 +12,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "autores")
 public class Autor implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_autor", nullable = false)
-    private Long idAutor;
+    private Long id;
 
     @Column(name = "nome", length = 45, nullable = false)
     private String nome;
@@ -23,12 +24,24 @@ public class Autor implements Serializable {
     @Column(name = "sobrenome", length = 45, nullable = false)
     private String sobrenome;
 
-    public Long getIdAutor() {
-        return idAutor;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name = "id_info")
+    private InfoAutor infoAutor;
+
+    public InfoAutor getInfoAutor() {
+        return infoAutor;
     }
 
-    public void setIdAutor(Long idAutor) {
-        this.idAutor = idAutor;
+    public void setInfoAutor(InfoAutor infoAutor) {
+        this.infoAutor = infoAutor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -52,18 +65,18 @@ public class Autor implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Autor autor = (Autor) o;
-        return Objects.equals(idAutor, autor.idAutor);
+        return Objects.equals(id, autor.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAutor);
+        return Objects.hashCode(id);
     }
 
     @Override
     public String toString() {
         return "Autor{" +
-                "id=" + idAutor +
+                "id=" + id +
                 '}';
     }
 }
