@@ -3,6 +3,7 @@ package com.jnsdev.demospringdevjpa.controller;
 import com.jnsdev.demospringdevjpa.dao.AutorDao;
 import com.jnsdev.demospringdevjpa.entity.Autor;
 import com.jnsdev.demospringdevjpa.entity.InfoAutor;
+import com.jnsdev.demospringdevjpa.projection.AutorInfoProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,5 +66,10 @@ public class AutorController {
     @GetMapping("info")
     public List<Autor> salvarInfoAutor(@RequestParam String cargo) {
         return dao.findByCargo(cargo);
+    }
+
+    @GetMapping("autor-info")
+    public AutorInfoProjection salvarInfoAutor(@RequestParam Long id) {
+        return dao.findAutorInfoById(id);
     }
 }
