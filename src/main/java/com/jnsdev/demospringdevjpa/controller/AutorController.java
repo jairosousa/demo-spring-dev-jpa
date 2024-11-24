@@ -2,6 +2,7 @@ package com.jnsdev.demospringdevjpa.controller;
 
 import com.jnsdev.demospringdevjpa.dao.AutorDao;
 import com.jnsdev.demospringdevjpa.entity.Autor;
+import com.jnsdev.demospringdevjpa.entity.InfoAutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,5 +55,10 @@ public class AutorController {
     @GetMapping("total")
     public Long getTotalAutores() {
         return dao.getTotalElement();
+    }
+
+    @PutMapping("{id}/info")
+    public Autor salvarInfoAutor(@PathVariable Long id, @RequestBody InfoAutor infoAutor) {
+        return dao.saveInfoAutor(infoAutor, id);
     }
 }
